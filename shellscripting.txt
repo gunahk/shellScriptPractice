@@ -1,5 +1,5 @@
 shell script is interpeter not compiled
-
+ 
 
 bash shell scripting
 --------------------------------------------------------------------
@@ -16,8 +16,10 @@ which bash are u using
 #comment (relevant to code)
 
 --------------------------------------------------------------------------
-
-
+a=2
+single qutes display content AS it AS EXAMPLE : echo 'variable is $a'----> variable is $a
+doubble qutes prints along with cvariable EXAMPLE : echo 'variable is $a'----> variable is 2
+tilt is used for any command to take as input example :c=`ls -ltrh` [doublequte single quate doesnt work for command input]
 
 VAriables ----------------------------------------------------------------------------
 1. System variable------CAPITAL variable (os variable )
@@ -129,8 +131,6 @@ file system
 -c --------to check charector file
 -b --------to check block file (mp3,mp4)
 -l---------to check link file
-
-
 -s --------to check file empty
 
 
