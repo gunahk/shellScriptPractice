@@ -1,0 +1,14 @@
+read -p "Enter a charecter :" char
+
+case $char in 
+	[a-z] )
+		echo "a to z" ;;
+	[A-Z] )
+		echo "A to Z" ;;
+	[0-9] )
+		echo "0 to 9" ;;
+	? )
+		echo "Special " ;;
+	* )
+		echo "unknown"
+esac

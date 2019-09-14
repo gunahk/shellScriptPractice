@@ -1,0 +1,15 @@
+#! /bin/bash
+read -p 'Enter the file name : \c' file
+if [ -f $file ]
+then
+	echo "file exit"
+	if [ -w $file ]		
+	then 
+		echo "write data for exist press ctrl + D"
+		cat >> $file
+	else
+ 		echo "No write permission"
+  	 fi
+else
+	echo "File not exist"
+fi

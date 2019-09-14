@@ -1,0 +1,12 @@
+#! /bin/bash
+
+read -p 'Enter the url : ' in
+r=`curl -sI $in | head -n 1 | awk -F " " '{print $2}'`
+
+if [ $r -eq 200 ]
+then
+	echo $r
+else
+	echo "Page failed "
+fi
+

@@ -1,0 +1,15 @@
+os=( 'guna' 'hk' 'sekhar' 'Harinagiri')
+os[6]='new'
+
+
+unset os[3]
+echo "${os[@]}"
+echo "${os[3]}"
+echo "${!os[@]}"
+echo "${#os[@]}"
+
+string=fjksdfdkffhh
+echo "S{string[0]}"
+echo "S{string[@]}"
+
+

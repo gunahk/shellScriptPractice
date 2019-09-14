@@ -1,0 +1,13 @@
+#! /bin/bash
+
+hello(){
+echo $1
+}
+
+
+qit(){
+	echo 'www'
+}
+
+hello guna
+qit

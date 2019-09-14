@@ -1,0 +1,4 @@
+num1=9
+num2=30
+echo "$num1 + $num2" | bc
+echo "sclae=4;sqrt($num1)" | bc -l

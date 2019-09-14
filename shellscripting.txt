@@ -1,0 +1,351 @@
+shell script is interpeter not compiled
+
+
+bash shell scripting
+--------------------------------------------------------------------
+cat /etc/shells  --------> support bash
+sh--- shell
+bash ---- born again shell
+-----------------------------------------------------------------------
+which bash ---------->where bash located
+
+#! -------- ash bang
+where location
+which bash are u using
+
+#comment (relevant to code)
+
+--------------------------------------------------------------------------
+
+
+
+VAriables ----------------------------------------------------------------------------
+1. System variable------CAPITAL variable (os variable )
+2. User variable-------------------------(user variable)
+--------------------------------------------------------------
+System variable
+-----------------
+echo $BASH
+echo $BASH_VERSION
+echo $PWD
+echo $HOME
+--------------------------------------------------------------
+USer variable
+------------------
+name = guna
+echo name is $name
+
+
+echo my sheell is $BASH
+echo having version $BASH_VERSION
+echo my present working directoy is $PWD
+echo in $HOME
+-----------------------------------------------------------------------
+
+variable should not start with number(eg:10vaiable )
+
+------------------------------------------------------------------------------------------------
+Read user inputs
+----------------------
+
+echo enter name :
+read $name
+echo name is 
+-----------------------
+password( -sp )
+----------
+read -p 'username: ' user_var
+read -sp 'password: ' user_pass
+echo username is $user_var
+echo password is $user_pass
+-----------------------------------------
+by default (user data stored in $REPLY)
+
+echo "name : $REPLY"
+
+
+Result:
+guna
+name : guna
+
+--------------------------------------------------------------------------------------------------
+Argument to bash script
+-----------------------
+
+echo $0 $1 $2 $3
+
+guna@guna-HP:~/Desktop/shell$ ./password sdf fsfsfd reret rrg
+./password sdf fsfsfd reret
+
+
+-----------------------------------------------------------------------
+echo $0 $1 $2 $3
+echo $@
+
+guna@guna-HP:~/Desktop/shell$ ./password sdf fsfsfd reret rrg
+./password sdf fsfsfd reret
+sdf fsfsfd reret rrg
+
+
+---------------------------------------------------------------------------------------------------
+if Statement:
+if [ condition ]
+then
+	statement
+fi
+
+if else
+-----------------
+if Statement:
+if [ condition ]
+then
+	statement
+else
+	statement
+fi
+
+if elseif else 
+-------------------
+if [ condition ]
+then
+	statement
+elif [ condition ]
+then
+	statement
+'
+'
+'
+else
+	statement
+
+fi
+
+------------------------------------------------------------------------------------------------
+file system
+------------
+-d ------- to check directory
+-f --------to check regular file
+-e --------to check file exist or not
+-c --------to check charector file
+-b --------to check block file (mp3,mp4)
+-l---------to check link file
+
+
+-s --------to check file empty
+
+
+-w---------to check read permision
+-r --------to check write permision
+-x --------to check execte permision
+
+-n --------to print in one line
+
+example
+----------
+echo -e "Enter the name of file : \c"  #\c to read in same line we use -e (enable flag) 
+read file
+
+------------------------------------------------------------------------------------
+example : write a shell to if file exist then write date in file
+---------------
+#! /bin/bash
+echo -e 'Enter the file name : '           -------- read -p "Enter file : " file 
+read file
+if [ -f $file ]
+then
+	echo "file exit"
+	if [ -w $file ]		
+	then 
+		echo "write data for exit press ctrl + D"
+		cat >> $file
+	else
+ 		echo "No write permission"
+  	 fi
+else
+	echo "File not exist"
+fi
+
+age valid 18 to 30
+-------------------
+#! /bin/bash
+
+read -p "Enter age :" age
+if [[ $age -gt 18  &&  $age -lt 30 ]]             #(for or -o ,||)
+#if [ $age -gt 18  -a  $age -lt 30 ]
+#if [ $age -gt 18 ] && [ $age -lt 30 ]
+then
+	echo "Valid age"
+else
+	echo "invalid age"
+fi
+-------------------------------------------------------------------------------------------
+
+echo $(( num1 + num2 ))
+echo $(expr $num1 + $num2 )            for *  use \*
+by default input is taken as string to cnvert to num use expr
+`expr $a + $b` or
+$((inteer expression))    $(( $a + $b ))
+let c= $a + $b 
+
+
+
+for decimal
+------------------------------------
+echo "$num1 + $num2" | bc
+echo "$num1 + $num2" | bc
+echo "sclae=4;sqrt($num1)" | bc -l  # -l to import math library
+
+
+-------------------------------------------------------------------------------------
+case expression in
+	pattern )
+		statements ;;
+	pattern )
+		statements ;;
+	-------
+	* )
+		statements ;;
+esac
+
+----------------------------
+read -p "Enter a charecter :" char   #does execte A[Caital A] output to eARxecute press LANG=C
+
+case $char in 
+	[a-z] )
+		echo "a to z" ;;
+	[A-Z] )
+		echo "A to Z" ;;
+	[0-9] )
+		echo "0 to 9" ;;
+	? )
+		echo "Special " ;;
+	* )
+		echo "unknown"
+esac
+-------------------------------------------------------------------------------------------
+Array -------- only 1 dimensional array
+-----------------------------------------------------------------------------------------------
+
+os=( 'guna' 'hk' 'sekhar' 'Harinagiri')
+os[6]='new'
+
+
+unset os[3]
+echo "${os[@]}"
+echo "${os[3]}"
+echo "${!os[@]}"   # to print index place
+echo "${#os[@]}" # To print total index
+
+--------------------------------------------------------------------------------example
+while
+---------
+while [ condition ]
+do
+	command
+	command	
+	cammand
+done
+
+
+example
+-----------
+# /bin/bash
+read -p 'Enter number : ' num
+n=0
+while [ $n -le $num ]
+do
+	echo "$n"
+	n=$(( n + 1 )) 			#$ (( ++n ))
+	sleep 1
+done
+
+
+
+
+
+-----------------------------------------------------------------------------------------
+for
+---------
+for variable in 1 2 3 4   ....N
+do
+	commands
+done
+-----------
+for variable in file1,file2,file3,file4   # linux or ubuntu command line
+do
+	commands on file1/command line
+done
+-------------------
+for (( exp1 ; exp2 ; exp3 ;))
+do
+	commands
+done
+-------------------
+
+example
+--------
+for i in {1..10}    #1 2 3 4 5 6 7 8 9 10 #{1..10..2}  # ( i=0 ; i -lg 10 ; i++ )
+do
+	echo $i
+done
+
+#! /bin/bash
+
+for command in ls pwd date uname lsblk df du
+do
+	echo ----------- $command ------------------------
+	$command
+done
+
+----------------------------------------------------------------------------------------------
+select loop(syntax)
+----------
+for variable in list
+do
+	commands
+done
+
+example
+----------
+select name in guna dhee promad
+do
+	echo $name selected
+then
+-----------------------------------------------------------------------------------------------
+break and continue
+----------------------
+after break all commands are stoped
+after continue below commands are skipped
+
+
+
+functions
+------------
+fuction name(){
+
+	commands
+}
+
+
+name(){
+	commands
+}
+
+exmple
+-------------
+#! /bin/bash
+
+hello(){
+echo $1
+}
+
+
+qit(){
+	echo 'www'
+}
+
+hello guna
+qit
+
+----------------------------------------------------------------------------------------------------------------
+to take command output to variable use ``(tilt) not doble qote or single qute or use $(())
